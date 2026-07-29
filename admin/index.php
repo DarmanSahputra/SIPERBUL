@@ -12,10 +12,11 @@ $pages = $_GET['page'] ?? 'dashboard';
     <link rel="stylesheet" href="../src/output.css">
     <title>Document</title>
 </head>
-<body>
-    <div class="flex  ">
-        <?php include "pages/navbar.php" ?>
-        <div class="w-full h-screen ">
+<body class="h-screen  bg-slate-100">
+    <div class="flex h-screen overflow-hidden">
+        <?php include "navbar/navbar.php" ?>
+        <div class="w-full h-full overflow-y-auto scrollbar-none">
+            <?php include "navbar/navbar_top.php" ?>
             <?php include "pages/$pages.php" ?>
         </div>
     </div>
