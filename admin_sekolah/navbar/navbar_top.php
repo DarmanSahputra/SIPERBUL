@@ -29,7 +29,7 @@
                     <div id="profileMenu" class="absolute right-0 top-full z-50 mt-2 hidden w-48 overflow-hidden rounded-xl border border-slate-200 bg-white py-2 shadow-lg">
                         <!-- Informasi Petugas -->
                         <div class="border-b border-slate-100 px-4 py-3">
-                            <p class="text-sm font-semibold text-slate-700">Kantor Dinas</p>
+                            <p class="text-sm font-semibold text-slate-700">Petugas Sekolah</p>
                             <p class="mt-1 text-xs text-slate-400">Darman Sahputra Harefa</p>
                         </div>
 

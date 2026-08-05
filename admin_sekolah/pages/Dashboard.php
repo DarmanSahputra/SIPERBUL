@@ -1,8 +1,8 @@
 <div class="w-full h-full bg-slate-50 p-3 md:p-4 bg-black mt-2">
     <!-- Header -->
     <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h2 class="text-2xl font-bold text-slate-800">Selamat Datang, Petugas</h2>
-        <h1 class="mt-2 text-3xl font-bold text-blue-600 md:text-4xl">Ringkasan Pelaporan</h1>
+        <h2 class="text-sm font-bold text-slate-800">Selamat Datang, Petugas</h2>
+        <h1 class="mt-2 text-2xl font-bold text-blue-600 md:text-2xl">Ringkasan Pelaporan</h1>
         <p class="mt-2 text-sm text-slate-500">Pantau laporan dan perkembangan kasus bullying di sekolah.</p>
 
     </section>
@@ -113,7 +113,7 @@
                     <thead class="sticky top-0 z-10 bg-slate-50 ">
                         <tr>
                             <th class="px-6 py-4 text-xs font-bold uppercase text-slate-500">ID</th>
-                            <th class="px-6 py-4 text-xs font-bold uppercase text-slate-500">Nama Sekolah</th>
+                            <th class="px-6 py-4 text-xs font-bold uppercase text-slate-500">Jenis Tindakan</th>
                             <th class="px-6 py-4 text-center text-xs font-bold uppercase text-slate-500">Aksi</th>
                         </tr>
                     </thead>
@@ -124,8 +124,8 @@
                             <td class="px-6 py-4 font-semibold text-slate-700">#LP-001</td>
                             <td class="px-6 py-4">
                                 <div class="flex items-center gap-1">
-                                    <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 font-bold text-blue-600">S</span>
-                                    <span class="font-medium text-slate-700">SMA Negeri 1 Medan</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffd22e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-triangle-alert-icon lucide-triangle-alert"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                                    <span class="font-medium text-slate-700">Bully Fisik</span>
                                 </div>
                             </td>
                             <td class="px-6 py-4 text-center">
@@ -134,13 +134,12 @@
                                 </button>
                             </td>
                         </tr>
-    
                         <tr class="transition hover:bg-slate-50">
-                            <td class="px-6 py-4 font-semibold text-slate-700">#LP-002</td>
+                            <td class="px-6 py-4 font-semibold text-slate-700">#LP-001</td>
                             <td class="px-6 py-4">
                                 <div class="flex items-center gap-1">
-                                    <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 font-bold text-blue-600">S</span>
-                                    <span class="font-medium text-slate-700">SMP Negeri 3 Medan</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffd22e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-triangle-alert-icon lucide-triangle-alert"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                                    <span class="font-medium text-slate-700">Pemukulan</span>
                                 </div>
                             </td>
                             <td class="px-6 py-4 text-center">
@@ -149,13 +148,12 @@
                                 </button>
                             </td>
                         </tr>
-    
                         <tr class="transition hover:bg-slate-50">
-                            <td class="px-6 py-4 font-semibold text-slate-700">#LP-003</td>
+                            <td class="px-6 py-4 font-semibold text-slate-700">#LP-001</td>
                             <td class="px-6 py-4">
                                 <div class="flex items-center gap-1">
-                                    <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 font-bold text-blue-600">S</span>
-                                    <span class="font-medium text-slate-700">SMA Negeri 5 Medan</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffd22e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-triangle-alert-icon lucide-triangle-alert"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                                    <span class="font-medium text-slate-700">Cyberbully</span>
                                 </div>
                             </td>
                             <td class="px-6 py-4 text-center">
@@ -164,8 +162,6 @@
                                 </button>
                             </td>
                         </tr>
-                        
-    
                     </tbody>
     
                 </table>
