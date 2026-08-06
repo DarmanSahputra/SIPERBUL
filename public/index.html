@@ -1,11 +1,870 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Pelapor</title>
+    <title>SafeReport - Sistem Pelaporan Bullying dengan Privasi Terjamin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #4F46E5;
+            --primary-dark: #3730A3;
+            --accent: #10B981;
+            --soft-bg: #F8FAFC;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animated gradient background */
+        .hero-bg {
+            background: linear-gradient(-45deg, #4F46E5, #7C3AED, #2563EB, #0EA5E9);
+            background-size: 400% 400%;
+            animation: gradientShift 12s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating animation */
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .float-delay-1 {
+            animation: float 6s ease-in-out 1s infinite;
+        }
+
+        .float-delay-2 {
+            animation: float 6s ease-in-out 2s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Pulse glow */
+        .pulse-glow {
+            animation: pulseGlow 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(79, 70, 229, 0.8); }
+        }
+
+        /* Fade in up */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Card hover */
+        .feature-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(79, 70, 229, 0.25);
+        }
+
+        /* Shield animation */
+        .shield-pulse {
+            animation: shieldPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes shieldPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.08); opacity: 0.85; }
+        }
+
+        /* Privacy badge */
+        .privacy-badge {
+            background: linear-gradient(135deg, #10B981, #059669);
+            animation: badgeShine 3s ease-in-out infinite;
+        }
+
+        @keyframes badgeShine {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.15); }
+        }
+
+        /* Step number */
+        .step-number {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+        }
+
+        /* CTA button */
+        .cta-btn {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-btn:hover::before {
+            left: 100%;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(79, 70, 229, 0.4);
+        }
+
+        /* Navbar scroll */
+        .navbar-scrolled {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .navbar-scrolled .nav-link {
+            color: #1e293b !important;
+        }
+
+        .navbar-scrolled .logo-text {
+            color: #4F46E5 !important;
+        }
+
+        /* Image reveal */
+        .img-reveal {
+            overflow: hidden;
+            border-radius: 1.5rem;
+        }
+
+        .img-reveal img {
+            transition: transform 0.7s ease;
+        }
+
+        .img-reveal:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Stats counter */
+        .stat-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* Wave divider */
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .wave svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 80px;
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .mobile-menu.open {
+            max-height: 400px;
+        }
+
+        /* Lock animation */
+        .lock-icon {
+            animation: lockBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes lockBounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-5px) rotate(-5deg); }
+            75% { transform: translateY(-5px) rotate(5deg); }
+        }
+
+        /* Typing effect cursor */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
 </head>
-<body>
-    
+<body class="bg-slate-50 text-slate-800 overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-white text-xl"></i>
+                    </div>
+                    <span class="logo-text text-white font-bold text-xl tracking-tight">SafeReport</span>
+                </div>
+
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#fitur" class="nav-link text-white/90 hover:text-white font-medium transition">Fitur</a>
+                    <a href="#cara-kerja" class="nav-link text-white/90 hover:text-white font-medium transition">Cara Kerja</a>
+                    <a href="#privasi" class="nav-link text-white/90 hover:text-white font-medium transition">Privasi</a>
+                    <a href="#faq" class="nav-link text-white/90 hover:text-white font-medium transition">FAQ</a>
+                    <a href="#lapor" class="cta-btn text-white px-6 py-2.5 rounded-full font-semibold text-sm">
+                        Lapor Sekarang
+                    </a>
+                </div>
+
+                <button id="menu-btn" class="md:hidden text-white text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="mobile-menu md:hidden bg-white rounded-2xl mt-2 shadow-xl">
+                <div class="flex flex-col p-4 gap-3">
+                    <a href="#fitur" class="text-slate-700 font-medium py-2 px-3 rounded-lg hover:bg-indigo-50">Fitur</a>
+                    <a href="#cara-kerja" class="text-slate-700 font-medium py-2 px-3 rounded-lg hover:bg-indigo-50">Cara Kerja</a>
+                    <a href="#privasi" class="text-slate-700 font-medium py-2 px-3 rounded-lg hover:bg-indigo-50">Privasi</a>
+                    <a href="#faq" class="text-slate-700 font-medium py-2 px-3 rounded-lg hover:bg-indigo-50">FAQ</a>
+                    <a href="#lapor" class="cta-btn text-white text-center py-3 rounded-full font-semibold mt-2">Lapor Sekarang</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-32 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl float"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl float-delay-1"></div>
+        <div class="absolute top-1/2 left-1/3 w-48 h-48 bg-blue-300/15 rounded-full blur-2xl float-delay-2"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-white">
+                    <div class="inline-flex items-center gap-2 privacy-badge text-white text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+                        <i class="fas fa-lock lock-icon"></i>
+                        Privasi 100% Terjamin
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+                        Lapor Bullying<br>
+                        <span class="text-emerald-300">dengan Aman</span> &<br>
+                        Tanpa Rasa Takut
+                    </h1>
+
+                    <p class="text-lg sm:text-xl text-white/85 mb-8 max-w-lg leading-relaxed">
+                        Sistem informasi pelaporan perundungan yang dirancang untuk melindungi identitas pelapor. 
+                        Anonim, aman, dan didukung oleh profesional.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 mb-10">
+                        <a href="#lapor" class="cta-btn text-white px-8 py-4 rounded-full font-bold text-center text-lg pulse-glow">
+                            <i class="fas fa-paper-plane mr-2"></i> Buat Laporan Anonim
+                        </a>
+                        <a href="#cara-kerja" class="bg-white/15 backdrop-blur border border-white/30 text-white px-8 py-4 rounded-full font-semibold text-center hover:bg-white/25 transition">
+                            Pelajari Cara Kerja
+                        </a>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="stat-card rounded-2xl p-4 text-center">
+                            <div class="text-2xl sm:text-3xl font-bold">10K+</div>
+                            <div class="text-xs sm:text-sm text-white/80">Laporan Ditangani</div>
+                        </div>
+                        <div class="stat-card rounded-2xl p-4 text-center">
+                            <div class="text-2xl sm:text-3xl font-bold">100%</div>
+                            <div class="text-xs sm:text-sm text-white/80">Anonim</div>
+                        </div>
+                        <div class="stat-card rounded-2xl p-4 text-center">
+                            <div class="text-2xl sm:text-3xl font-bold">24/7</div>
+                            <div class="text-xs sm:text-sm text-white/80">Siaga</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image / Illustration -->
+                <div class="relative flex justify-center">
+                    <div class="relative">
+                        <!-- Main shield illustration -->
+                        <div class="w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center shield-pulse">
+                            <div class="w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-full bg-white/15 flex items-center justify-center">
+                                <i class="fas fa-user-shield text-white text-7xl sm:text-8xl lg:text-9xl opacity-90"></i>
+                            </div>
+                        </div>
+
+                        <!-- Floating cards -->
+                        <div class="absolute -top-4 -left-4 sm:-left-8 bg-white rounded-2xl shadow-2xl p-4 float">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center">
+                                    <i class="fas fa-check text-emerald-600"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-500">Status</div>
+                                    <div class="font-semibold text-slate-800 text-sm">Identitas Dilindungi</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="absolute -bottom-2 -right-2 sm:-right-6 bg-white rounded-2xl shadow-2xl p-4 float-delay-1">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                                    <i class="fas fa-lock text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-500">Enkripsi</div>
+                                    <div class="font-semibold text-slate-800 text-sm">End-to-End</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="absolute top-1/2 -right-8 sm:-right-16 bg-white rounded-2xl shadow-2xl p-3 float-delay-2 hidden sm:block">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-eye-slash text-purple-600"></i>
+                                <span class="font-semibold text-slate-800 text-sm">Anonim</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wave -->
+        <div class="wave">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.11,140.83,94.17,208.28,82.41,274.29,70.81,289.33,64.5,321.39,56.44Z" fill="#F8FAFC"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Privacy Highlight Section -->
+    <section id="privasi" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <span class="inline-block bg-emerald-100 text-emerald-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+                    <i class="fas fa-shield-alt mr-1"></i> Komitmen Privasi
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+                    Identitas Anda <span class="text-indigo-600">Tidak Akan Pernah</span> Dibocorkan
+                </h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                    Kami memahami betapa pentingnya rasa aman saat melapor. Sistem ini dibangun dengan prinsip privasi sebagai fondasi utama.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                <div class="img-reveal fade-in-up">
+                    <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&q=80" 
+                         alt="Keamanan Data Digital" 
+                         class="w-full h-80 object-cover rounded-3xl shadow-xl">
+                </div>
+
+                <div class="space-y-6 fade-in-up">
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-user-secret text-indigo-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-900 mb-1">Pelaporan Sepenuhnya Anonim</h3>
+                            <p class="text-slate-600">Tidak perlu nama, email, atau nomor telepon. Laporan dikirim tanpa jejak identitas pribadi.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-key text-emerald-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-900 mb-1">Enkripsi End-to-End</h3>
+                            <p class="text-slate-600">Semua data dienkripsi dengan standar AES-256. Hanya pihak berwenang yang dapat mengakses isi laporan.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-database text-purple-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-900 mb-1">Tidak Ada Penyimpanan Data Pribadi</h3>
+                            <p class="text-slate-600">Kami tidak menyimpan IP address, lokasi, atau metadata yang bisa mengidentifikasi pelapor.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-balance-scale text-amber-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-900 mb-1">Sesuai Regulasi Privasi</h3>
+                            <p class="text-slate-600">Sistem mematuhi standar perlindungan data pribadi dan etika penanganan kasus bullying.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="fitur" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <span class="inline-block bg-indigo-100 text-indigo-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+                    Fitur Unggulan
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+                    Dirancang untuk Melindungi & Memberdayakan
+                </h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                    Setiap fitur dibuat dengan satu tujuan: membuat Anda merasa aman saat berbicara tentang perundungan.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-slate-50 rounded-3xl p-8 border border-slate-100 fade-in-up">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-mask text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-3">Mode Anonim</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Lapor tanpa takut dibalas. Sistem kami menyembunyikan seluruh identitas Anda secara otomatis.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card bg-slate-50 rounded-3xl p-8 border border-slate-100 fade-in-up">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-3">Respon Cepat</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Laporan Anda langsung diteruskan ke tim penanganan khusus dalam hitungan menit, bukan hari.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card bg-slate-50 rounded-3xl p-8 border border-slate-100 fade-in-up">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-500 to-pink-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-comments text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-3">Konsultasi Aman</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Dapatkan dukungan psikolog dan konselor melalui chat terenkripsi tanpa harus mengungkapkan identitas.
+                    </p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card bg-slate-50 rounded-3xl p-8 border border-slate-100 fade-in-up">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-map-marker-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-3">Laporan Berbasis Lokasi</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Tandai lokasi kejadian (opsional) agar tim dapat merespons lebih tepat sasaran tanpa mengungkap data Anda.
+                    </p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card bg-slate-50 rounded-3xl p-8 border border-slate-100 fade-in-up">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-3">Pantau Status Laporan</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Gunakan kode unik untuk melacak perkembangan laporan Anda secara rahasia kapan saja.
+                    </p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card bg-slate-50 rounded-3xl p-8 border border-slate-100 fade-in-up">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-700 flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-3">Dukungan Komunitas</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Bergabung dengan ruang aman (opsional) untuk berbagi pengalaman tanpa takut dihakimi.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section id="cara-kerja" class="py-20 bg-gradient-to-b from-indigo-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <span class="inline-block bg-indigo-100 text-indigo-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+                    Langkah Mudah
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+                    Cara Melapor Hanya 4 Langkah
+                </h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                    Proses sederhana, cepat, dan sepenuhnya melindungi privasi Anda.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6 relative">
+                <!-- Connector line (desktop) -->
+                <div class="hidden md:block absolute top-8 left-[12%] right-[12%] h-1 bg-gradient-to-r from-indigo-300 via-purple-300 to-indigo-300 rounded-full"></div>
+
+                <!-- Step 1 -->
+                <div class="relative text-center fade-in-up">
+                    <div class="step-number w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-6 relative z-10 shadow-lg">
+                        1
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100">
+                        <i class="fas fa-edit text-indigo-500 text-3xl mb-4"></i>
+                        <h3 class="font-bold text-lg mb-2">Isi Formulir</h3>
+                        <p class="text-slate-600 text-sm">Ceritakan kejadian secara detail. Tidak perlu data pribadi.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative text-center fade-in-up">
+                    <div class="step-number w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-6 relative z-10 shadow-lg">
+                        2
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100">
+                        <i class="fas fa-paper-plane text-indigo-500 text-3xl mb-4"></i>
+                        <h3 class="font-bold text-lg mb-2">Kirim Anonim</h3>
+                        <p class="text-slate-600 text-sm">Tekan kirim. Laporan terenkripsi dan identitas terhapus.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative text-center fade-in-up">
+                    <div class="step-number w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-6 relative z-10 shadow-lg">
+                        3
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100">
+                        <i class="fas fa-user-check text-indigo-500 text-3xl mb-4"></i>
+                        <h3 class="font-bold text-lg mb-2">Tim Menindaklanjuti</h3>
+                        <p class="text-slate-600 text-sm">Petugas terlatih menerima & memproses laporan Anda.</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative text-center fade-in-up">
+                    <div class="step-number w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-6 relative z-10 shadow-lg">
+                        4
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100">
+                        <i class="fas fa-clipboard-check text-indigo-500 text-3xl mb-4"></i>
+                        <h3 class="font-bold text-lg mb-2">Pantau Status</h3>
+                        <p class="text-slate-600 text-sm">Gunakan kode unik untuk melihat perkembangan kasus.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Supporting Image Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in-up order-2 lg:order-1">
+                    <span class="inline-block bg-rose-100 text-rose-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+                        Mengapa Melapor Itu Penting
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">
+                        Setiap Laporan Bisa Menyelamatkan Seseorang
+                    </h2>
+                    <p class="text-slate-600 text-lg mb-6 leading-relaxed">
+                        Banyak korban bullying diam karena takut. Dengan sistem yang melindungi privasi, 
+                        Anda bisa menjadi suara bagi mereka yang tidak berani berbicara.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                            <span class="text-slate-700">Mencegah perundungan berlanjut dan semakin parah</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                            <span class="text-slate-700">Memberikan dukungan psikologis bagi korban</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                            <span class="text-slate-700">Menciptakan lingkungan sekolah/kerja yang lebih aman</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="img-reveal fade-in-up order-1 lg:order-2">
+                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80" 
+                         alt="Dukungan Teman dan Komunitas" 
+                         class="w-full h-96 object-cover rounded-3xl shadow-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Second Image Section -->
+    <section class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="img-reveal fade-in-up">
+                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80" 
+                         alt="Konseling dan Dukungan Profesional" 
+                         class="w-full h-96 object-cover rounded-3xl shadow-xl">
+                </div>
+
+                <div class="fade-in-up">
+                    <span class="inline-block bg-purple-100 text-purple-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+                        Tim Profesional
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">
+                        Ditangani oleh Ahli yang Berpengalaman
+                    </h2>
+                    <p class="text-slate-600 text-lg mb-6 leading-relaxed">
+                        Setiap laporan ditinjau oleh tim yang terdiri dari konselor, psikolog, dan petugas 
+                        yang telah dilatih khusus dalam penanganan kasus bullying dengan sensitivitas tinggi.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
+                            <div class="text-3xl font-bold text-indigo-600 mb-1">50+</div>
+                            <div class="text-sm text-slate-600">Konselor Siaga</div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
+                            <div class="text-3xl font-bold text-indigo-600 mb-1">&lt; 1 Jam</div>
+                            <div class="text-sm text-slate-600">Waktu Respon Rata-rata</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in-up">
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">Pertanyaan yang Sering Diajukan</h2>
+                <p class="text-slate-600">Semua tentang privasi dan keamanan sistem kami.</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="faq-item bg-slate-50 rounded-2xl overflow-hidden fade-in-up">
+                    <button class="faq-btn w-full flex items-center justify-between p-5 text-left font-semibold text-slate-900 hover:bg-slate-100 transition">
+                        <span>Apakah benar identitas saya tidak akan diketahui?</span>
+                        <i class="fas fa-chevron-down text-indigo-500 transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-slate-600">
+                        Ya. Sistem kami dirancang agar tidak menyimpan data identitas sama sekali. Tidak ada nama, email, nomor HP, atau IP address yang dicatat. Laporan hanya berisi isi cerita yang Anda tuliskan.
+                    </div>
+                </div>
+
+                <div class="faq-item bg-slate-50 rounded-2xl overflow-hidden fade-in-up">
+                    <button class="faq-btn w-full flex items-center justify-between p-5 text-left font-semibold text-slate-900 hover:bg-slate-100 transition">
+                        <span>Bagaimana cara saya memantau laporan tanpa login?</span>
+                        <i class="fas fa-chevron-down text-indigo-500 transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-slate-600">
+                        Setelah mengirim laporan, Anda akan menerima kode unik (ticket ID). Gunakan kode tersebut di halaman "Cek Status" untuk melihat perkembangan tanpa perlu akun.
+                    </div>
+                </div>
+
+                <div class="faq-item bg-slate-50 rounded-2xl overflow-hidden fade-in-up">
+                    <button class="faq-btn w-full flex items-center justify-between p-5 text-left font-semibold text-slate-900 hover:bg-slate-100 transition">
+                        <span>Apakah data saya aman dari peretas?</span>
+                        <i class="fas fa-chevron-down text-indigo-500 transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-slate-600">
+                        Seluruh data dienkripsi end-to-end menggunakan standar industri (AES-256). Bahkan jika server disusupi, isi laporan tetap tidak dapat dibaca tanpa kunci enkripsi.
+                    </div>
+                </div>
+
+                <div class="faq-item bg-slate-50 rounded-2xl overflow-hidden fade-in-up">
+                    <button class="faq-btn w-full flex items-center justify-between p-5 text-left font-semibold text-slate-900 hover:bg-slate-100 transition">
+                        <span>Siapa yang akan membaca laporan saya?</span>
+                        <i class="fas fa-chevron-down text-indigo-500 transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-5 pb-5 text-slate-600">
+                        Hanya tim penanganan kasus yang telah melalui proses screening ketat dan terikat perjanjian kerahasiaan. Tidak ada pihak ketiga yang dapat mengakses laporan.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="lapor" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 hero-bg opacity-95"></div>
+        <div class="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-purple-400/20 rounded-full blur-3xl"></div>
+
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur text-white text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+                <i class="fas fa-lock"></i> 100% Anonim & Aman
+            </div>
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-white mb-6 leading-tight">
+                Jangan Biarkan Ketakutan<br>Menghalangi Keberanianmu
+            </h2>
+            <p class="text-xl text-white/85 mb-10 max-w-2xl mx-auto">
+                Satu laporan bisa mengubah hidup seseorang. Lapor sekarang — identitasmu tetap rahasia.
+            </p>
+            <a href="#" class="inline-block bg-white text-indigo-700 px-10 py-5 rounded-full font-bold text-lg shadow-2xl hover:shadow-white/30 hover:scale-105 transition-all duration-300">
+                <i class="fas fa-paper-plane mr-2"></i> Mulai Laporan Anonim
+            </a>
+            <p class="mt-6 text-white/70 text-sm">
+                <i class="fas fa-shield-alt mr-1"></i> Tidak perlu daftar akun • Tidak menyimpan data pribadi
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-10">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-white"></i>
+                        </div>
+                        <span class="text-white font-bold text-xl">SafeReport</span>
+                    </div>
+                    <p class="text-slate-400 max-w-md leading-relaxed">
+                        Sistem Informasi Pelaporan Bullying yang mengutamakan privasi dan keamanan pelapor. 
+                        Karena setiap orang berhak merasa aman.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Tautan</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#fitur" class="hover:text-white transition">Fitur</a></li>
+                        <li><a href="#cara-kerja" class="hover:text-white transition">Cara Kerja</a></li>
+                        <li><a href="#privasi" class="hover:text-white transition">Privasi</a></li>
+                        <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Kontak Darurat</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-phone text-indigo-400"></i>
+                            Hotline: 1500-xxx
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-envelope text-indigo-400"></i>
+                            bantuan@safereport.id
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+                <p>© 2026 SafeReport. Semua hak dilindungi.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-white transition">Syarat & Ketentuan</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                const icon = menuBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Fade in on scroll
+        const fadeElements = document.querySelectorAll('.fade-in-up');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('i');
+                const isOpen = !content.classList.contains('hidden');
+
+                // Close all
+                document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+                document.querySelectorAll('.faq-btn i').forEach(i => i.classList.remove('rotate-180'));
+
+                // Open clicked if it was closed
+                if (isOpen) {
+                    content.classList.add('hidden');
+                    icon.classList.remove('rotate-180');
+                } else {
+                    content.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
